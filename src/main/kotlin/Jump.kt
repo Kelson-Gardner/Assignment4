@@ -1,6 +1,6 @@
 class Jump(
     val registerJump: UByte
-) : InstructionStrategy {
+) : InstructionStrategy() {
     override fun performAction() {
         // TODO: Implement the Jump instruction
     }

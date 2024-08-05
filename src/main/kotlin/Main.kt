@@ -1,28 +1,44 @@
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-val executor = Executors.newSingleThreadScheduledExecutor()
+fun main(){
+    //TODO: make an array that has the instructions in the spot of where the first nibble is
+    //so you can just call it from there and get the instruction to execute from it
 
-val runnable = Runnable {
-    println("Hello!")
-}
+    val byte = (0xF6).toUByte()
+    val firstNibble = byte.toInt() shr 4
+    println(firstNibble)
+    val secondNibble = byte.toInt() and 0xF
+    println(secondNibble)
 
-val cpuFuture = executor.scheduleAtFixedRate(
-    cpuRunnable,
-    0,
-    1000L / 500L, // repeat frequency - every 2 ms
-    TimeUnit.MILLISECONDS
-)
+    //Joinging nibbles together
+    var newByte = firstNibble.toInt() shl 4
+    newByte = newByte or secondNibble
+    //newByte is equal to the joining of the nibbles
 
-//to stop and interupt a future
-public fun stop(){
-cpuFuture?.cancel(true)
+    val executor = Executors.newSingleThreadScheduledExecutor()
 
-try {
-    cpuFuture.get() // waits for future to finish or be cancelled - blocks current thread execution (repeating futures will still run)
-} catch (_: Exception) {
-    executor.shutdown() // turns off the executor allowing the program to terminate when the end is reached
-}
+    val runnable = Runnable {
+        println("Hello!")
+    }
+
+    val cpuFuture = executor.scheduleAtFixedRate(
+        runnable,
+        0,
+        1000L / 500L, // repeat frequency - every 2 ms
+        TimeUnit.MILLISECONDS
+    )
+
+    //to stop and interupt a future
+    cpuFuture?.cancel(true)
+
+    try {
+        cpuFuture.get() // waits for future to finish or be cancelled - blocks current thread execution (repeating futures will still run)
+    } catch (_: Exception) {
+        executor.shutdown() // turns off the executor allowing the program to terminate when the end is reached
+    }
+
+
 }
 
 // to wait for all futures to finish

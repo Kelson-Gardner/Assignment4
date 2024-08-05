@@ -1,8 +1,7 @@
 class Write(
     val register: UByte,
-    val memoryAddress: String
-) : InstructionStrategy {
+) : InstructionStrategy() {
     override fun performAction() {
-        //TODO: implement the Wrtie instruction
+        //TODO: implement the Write instruction
     }
 }

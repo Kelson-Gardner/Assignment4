@@ -1,7 +1,6 @@
 class ReadT(
-    val registerX: String,
-    val memoryAddress: String
-) : InstructionStrategy {
+    val registerX: UByte
+) : InstructionStrategy() {
     override fun performAction() {
         //TODO: Implements the read T instruction
     }

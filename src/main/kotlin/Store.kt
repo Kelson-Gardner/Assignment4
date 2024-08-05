@@ -1,7 +1,7 @@
 class Store(
-    val register: String,
+    val register: UByte,
     val byte: UByte
-) : InstructionStrategy {
+) : InstructionStrategy() {
     override fun performAction(){
     //TODO: Implement the store function
     }

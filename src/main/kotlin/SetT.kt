@@ -1,7 +1,6 @@
 class SetT (
-    val bb: String,
-    val memoryAddress: String
-) : InstructionStrategy {
+    val bb: UByte
+) : InstructionStrategy() {
     override fun performAction() {
         //TODO: implement the set T instruction
     }
