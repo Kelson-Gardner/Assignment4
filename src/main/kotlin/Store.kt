@@ -1,8 +1,12 @@
 class Store(
-    val register: UByte,
-    val byte: UByte
+    private val register: Char,
+    private val byte: String
 ) : InstructionStrategy() {
+    private val cpu = CPU.getInstance()
     override fun performAction(){
-    //TODO: Implement the store function
+        cpu.assignRegisterValue(register.digitToInt(), byte)
+    }
+    override fun incrementProgramCounter(){
+        cpu.incrementProgramCounter()
     }
 }

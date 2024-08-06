@@ -1,7 +1,12 @@
 class Read(
-    val register: UByte,
+    val register: Char,
 ) : InstructionStrategy() {
+    private val cpu = CPU.getInstance()
     override fun performAction() {
-        //TODO: implement the Read instruction
+        val address = cpu.getAddress()
+        cpu.assignRegisterValue(register.toString().toInt(), address)
+    }
+    override fun incrementProgramCounter() {
+        cpu.incrementProgramCounter()
     }
 }

@@ -1,22 +1,12 @@
-class RAM private constructor() {
-    // THIS WILL MOSTLY BE USED FOR THE ASCII DISPLAY
+class RAM {
+    private var memory = UByteArray(4096)
 
-    private val memory = UByteArray(4096)
-    companion object{
-        @Volatile
-        private var instance: RAM? = null
-
-        fun getInstance(): RAM{
-            return instance ?: synchronized(this){
-                instance ?: RAM().also { instance = it }
-            }
-        }
-    }
-
+    @OptIn(ExperimentalUnsignedTypes::class)
     fun read(address: Int): UByte {
         return memory[address]
     }
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     fun write(address: Int, value: UByte) {
         memory[address] = value
     }

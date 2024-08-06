@@ -1,5 +1,5 @@
 class ConvertToBase10(
-    val registerX: UByte
+    val registerX: Char
 ) : InstructionStrategy() {
     override fun performAction() {
         //TODO: implement the convert to base 10 instruction

@@ -1,7 +1,11 @@
 class Jump(
-    val registerJump: UByte
+    val registerJump: String
 ) : InstructionStrategy() {
+    private val cpu = CPU.getInstance()
     override fun performAction() {
-        // TODO: Implement the Jump instruction
+        cpu.programCounter = registerJump.toInt(16)
+        if(cpu.programCounter % 2 != 0){
+            // TODO: implement either facade pattern method or pu method that will stop the program
+        }
     }
 }

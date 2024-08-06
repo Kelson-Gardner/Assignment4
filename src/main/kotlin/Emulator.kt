@@ -1,15 +1,17 @@
 class Emulator {
-    private val cpu = CPU
-    private var rom = ROM
-    private var ram = RAM
 
-    fun loadAndRunProgram(path: String) {
-//        cpu.loadProgram(path)
-//        cpu.start()
+    fun loadAndRunProgram() {
+        val cpu = CPU.getInstance()
+        val file = cpu.runProgram()
+        cpu.loadProgramInROM(file)
+        cpu.execute()
     }
 
+    fun printToScreen(){
+        //TODO: implement
+    }
 
     fun stopProgram() {
-//        cpu.stop()
+        //TODO: implement the stopping of the program
     }
 }

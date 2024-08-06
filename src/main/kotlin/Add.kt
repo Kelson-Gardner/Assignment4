@@ -1,9 +1,15 @@
 class Add(
-    val registerX: UByte,
-    val registerY: UByte,
-    val registerSum: UByte
+    private val registerX: Char,
+    private val registerY: Char,
+    private val sumRegister: Char
 ) : InstructionStrategy(){
+    private val cpu = CPU.getInstance()
     override fun performAction(){
-        //TODO: implement the add instruction
+        val sum = registerX.toString().toInt(16) + registerY.toString().toInt(16)
+        cpu.assignRegisterValue(sumRegister.toString().toInt(), sum.toString())
+    }
+
+    override fun incrementProgramCounter() {
+        cpu.incrementProgramCounter()
     }
 }

@@ -1,7 +1,7 @@
 class Draw(
-    val registerX: UByte,
-    val row: UByte,
-    val column: UByte
+    val registerX: Char,
+    val row: Char,
+    val column: Char
 ) : InstructionStrategy() {
     override fun performAction() {
         //TODO: Implement the draw instruction

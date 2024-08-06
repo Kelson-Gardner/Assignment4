@@ -1,5 +1,5 @@
 class ReadKeyboard(
-    val register: UByte,
+    val register: Char,
 ) : InstructionStrategy() {
     override fun performAction() {
         //TODO: Implement the read keyboard instruction

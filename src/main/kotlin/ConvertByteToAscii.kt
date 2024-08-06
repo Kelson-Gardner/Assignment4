@@ -1,6 +1,6 @@
 class ConvertByteToAscii(
-    val registerX: UByte,
-    val registerY: UByte
+    val registerX: Char,
+    val registerY: Char
 ) : InstructionStrategy() {
     override fun performAction() {
         //TODO: implement the convert byte to ascii instruction

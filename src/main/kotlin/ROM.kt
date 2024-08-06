@@ -1,5 +1,6 @@
+import java.io.File
 class ROM private constructor() {
-    private val memory = UByteArray(4096)
+    private var memory = UByteArray(4096)
     companion object{
         @Volatile
         private var instance: ROM? = null
@@ -10,11 +11,19 @@ class ROM private constructor() {
             }
         }
     }
-    fun read(address: Int): UByte {
-        return memory[address]
+    @OptIn(ExperimentalUnsignedTypes::class)
+    fun read(address: Int): String {
+        val byte = memory[address]
+        return String.format("%02X", byte.toInt() and 0xFF)
     }
-
-    fun loadProgram(program: UByteArray) {
-        program.copyInto(memory)
+    @OptIn(ExperimentalUnsignedTypes::class)
+    fun loadProgram(filePath: String) {
+        val inputFile = File(filePath)
+        val bytes = inputFile.readBytes()
+        var count = 0
+        for(byte in bytes){
+            memory[count] = byte.toUByte()
+            count++
+        }
     }
 }
