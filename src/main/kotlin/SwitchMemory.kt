@@ -1,7 +1,12 @@
 class SwitchMemory : InstructionStrategy() {
+    var cpu = CPU.getInstance()
+
     override fun performAction() {
         //TODO: implement the switch memory instruction
-        var cpu = CPU.getInstance()
-        cpu.memoryFlag = !cpu.memoryFlag
+        cpu.toggleMemoryFlag()
+    }
+
+    override fun incrementProgramCounter() {
+        cpu.incrementProgramCounter()
     }
 }

@@ -11,7 +11,7 @@ class CPU private constructor(){
     var timer: Int = 0 // 8 bit register for storing the timer value
     // While the t value is above 0, the program decrements the value by 1 at 60hz (every 16ms
     var address: UByte = 0.toUByte() // 16 bit register for storing an address
-    var memoryFlag: Boolean = false // 0 = RAM 1 = ROM
+    private var memoryFlag: Boolean = false // 0 = RAM 1 = ROM
 
     companion object {
         @Volatile
@@ -66,6 +66,14 @@ class CPU private constructor(){
 
     fun incrementProgramCounter(){
         programCounter += 2
+    }
+
+    fun toggleMemoryFlag(){
+        memoryFlag = !memoryFlag
+    }
+
+    fun getMemoryFlag(): Boolean{
+        return memoryFlag
     }
 
     fun execute(){
