@@ -13,7 +13,7 @@ class InstructionFactory {
             7 -> SwitchMemory()
             8 -> SkipEqual(operands[0], operands[1])
             9 -> SkipNotEqual(operands[0], operands[1])
-            10 -> SetA(operands[0])
+            10 -> SetA(operands[0].toString() + operands[1].toString() + operands[2].toString())
             11-> SetT(operands[0])
             12-> ReadT(operands[0])
             13 -> ConvertToBase10(operands[0])

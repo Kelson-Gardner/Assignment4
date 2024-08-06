@@ -1,7 +1,12 @@
 class SetA(
-    val aaa: Char
+    private val address: String
 ) : InstructionStrategy() {
+    private val cpu = CPU.getInstance()
     override fun performAction() {
-        //TODO: implement the set A instruction
+        cpu.assignAddressValue(address.toUByte(16))
+    }
+
+    override fun incrementProgramCounter() {
+        cpu.incrementProgramCounter()
     }
 }
