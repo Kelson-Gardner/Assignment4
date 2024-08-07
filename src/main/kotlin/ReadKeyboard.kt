@@ -1,7 +1,14 @@
 class ReadKeyboard(
     val register: Char,
 ) : InstructionStrategy() {
+    private val cpu = CPU.getInstance()
     override fun performAction() {
-        //TODO: Implement the read keyboard instruction
+        println("Enter a number between 0 and F")
+        val input = readln()
+        cpu.assignRegisterValue(register.toString().toInt(), input)
+    }
+
+    override fun incrementProgramCounter() {
+        cpu.incrementProgramCounter()
     }
 }

@@ -1,7 +1,13 @@
 class Write(
-    val register: Char,
+    private val register: Char,
 ) : InstructionStrategy() {
+    private val cpu = CPU.getInstance()
     override fun performAction() {
-        //TODO: implement the Write instruction
+        val registerValue = cpu.getRegisterValue(register.digitToInt())
+        cpu.assignAddressValue(registerValue)
+    }
+
+    override fun incrementProgramCounter() {
+        cpu.incrementProgramCounter()
     }
 }

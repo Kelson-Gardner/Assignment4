@@ -3,7 +3,9 @@ class SetA(
 ) : InstructionStrategy() {
     private val cpu = CPU.getInstance()
     override fun performAction() {
-        cpu.assignAddressValue(address.toUByte(16))
+        val intAddress = address.toInt(16)
+        val hexAddress = intAddress.toString(16)
+        cpu.assignAddressValue(hexAddress.toUByte(16))
     }
 
     override fun incrementProgramCounter() {

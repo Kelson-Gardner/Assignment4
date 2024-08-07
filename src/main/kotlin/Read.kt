@@ -1,5 +1,5 @@
 class Read(
-    val register: Char,
+    private val register: Char,
 ) : InstructionStrategy() {
     private val cpu = CPU.getInstance()
     override fun performAction() {

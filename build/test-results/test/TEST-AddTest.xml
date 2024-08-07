@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AddTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-08-07T03:39:41" hostname="Kelsons-MacBook-Pro-2.local" time="0.073">
+  <properties/>
+  <testcase name="testExecute()" classname="AddTest" time="0.058"/>
+  <testcase name="testPerformAction()" classname="AddTest" time="0.002"/>
+  <testcase name="testIncrementProgramCounter()" classname="AddTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

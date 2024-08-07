@@ -1,7 +1,12 @@
 class ReadT(
-    val registerX: Char
+    private val register: Char
 ) : InstructionStrategy() {
-    override fun performAction() {
-        //TODO: Implements the read T instruction
+    var cpu = CPU.getInstance()
+    override fun performAction(){
+        cpu.assignRegisterValue(register.toString().toInt(), cpu.timer.getTime())
+    }
+
+    override fun incrementProgramCounter() {
+        cpu.incrementProgramCounter()
     }
 }

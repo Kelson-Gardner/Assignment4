@@ -6,7 +6,5 @@ abstract class InstructionStrategy {
 
     protected abstract fun performAction()
 
-    protected open fun incrementProgramCounter(){
-        println("This is the increment program counter method")
-    }//TODO: Increment the counter
+    protected open fun incrementProgramCounter(){}
 }

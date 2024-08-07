@@ -7,10 +7,6 @@ class Emulator {
         cpu.execute()
     }
 
-    fun printToScreen(){
-        //TODO: implement
-    }
-
     fun stopProgram() {
         //TODO: implement the stopping of the program
     }

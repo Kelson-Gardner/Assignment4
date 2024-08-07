@@ -12,16 +12,18 @@ class StoreTest {
 
     @Test
     fun testIncrementProgramCounter(){
+        val previousProgramCounter = cpu.programCounter
         val store = Store('5', "6F")
         store.execute()
-        assertEquals(cpu.programCounter, 6)
+        assertEquals(cpu.programCounter - previousProgramCounter, 2)
     }
 
     @Test
     fun testExecute(){
+        val previousProgramCounter = cpu.programCounter
         val store = Store('2', "FF")
         store.execute()
         assertEquals(cpu.getRegisterValue(2), "FF".toUByte(16))
-        assertEquals(cpu.programCounter, 2)
+        assertEquals(cpu.programCounter - previousProgramCounter, 2)
     }
 }

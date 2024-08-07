@@ -4,14 +4,15 @@ import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
 
 class CPU private constructor(){
-    private val rom = UByteArray(4096)
-    private val ram = UByteArray(4096)
+    private val rom = ROM()
+    private val ram = RAM()
     private val registers = UByteArray(8)
     var programCounter: Int = 0 // 16 bit register, stores address of current instruction. SHOULD ALWAYS INCREMENT BY 2!!
-    var timer: Int = 0 // 8 bit register for storing the timer value
+    var timer = Timer() // 8 bit register for storing the timer value
     // While the t value is above 0, the program decrements the value by 1 at 60hz (every 16ms
-    var address: UByte = 0.toUByte() // 16 bit register for storing an address
+    private var address: UByte = "0".toUByte(16) // 16 bit register for storing an address
     private var memoryFlag: Boolean = false // 0 = RAM 1 = ROM
+    var asciiDisplay = AsciiScreen()
 
     companion object {
         @Volatile
@@ -25,18 +26,12 @@ class CPU private constructor(){
     }
 
     @OptIn(ExperimentalUnsignedTypes::class)
-    fun readROM(address: Int): String {
-        val byte = rom[address]
-        return String.format("%02X", byte.toInt() and 0xFF)
-    }
-
-    @OptIn(ExperimentalUnsignedTypes::class)
     fun loadProgramInROM(filePath: String) {
         val inputFile = File(filePath)
         val bytes = inputFile.readBytes()
         var count = 0
         for(byte in bytes){
-            rom[count] = byte.toUByte()
+            rom.insertByte(byte.toUByte(), count)
             count++
         }
     }
@@ -76,33 +71,44 @@ class CPU private constructor(){
         return memoryFlag
     }
 
+    fun readROM(index: Int): String{
+        return rom.read(index)
+    }
+
+    lateinit var cpuFuture: ScheduledFuture<*>
+
     fun execute(){
         val executor = Executors.newSingleThreadScheduledExecutor()
         val runnable = Runnable {
             val byte = readROM(programCounter) + readROM(programCounter + 1)
+            if(byte == "0000"){
+                cpuFuture.cancel(true)
+                executor.shutdown()
+            }
             val opcode = byte[0]
             val operands = byte.substring(1)
-            val instruction = InstructionFactory().createInstruction(opcode.digitToInt(), operands)
+            val instruction = InstructionFactory().createInstruction(opcode.digitToInt(16), operands)
             instruction.execute()
-            println(registers[0])
-        }
+            println(address)
+    }
 
-        val cpuFuture = executor.scheduleAtFixedRate(
+        cpuFuture = executor.scheduleAtFixedRate(
             runnable,
             0,
-            1000L / 500L,
+            1000L/500L,
             TimeUnit.MILLISECONDS
         )
 
-//        cpuFuture.get()
-//
-//        //to stop and interupt a future
-//        cpuFuture?.cancel(true)
-//
-//        try {
-//            cpuFuture.get() // waits for future to finish or be cancelled - blocks current thread execution (repeating futures will still run)
-//        } catch (_: Exception) {
-//            executor.shutdown() // turns off the executor allowing the program to terminate when the end is reached
-//        }
+
+        cpuFuture.get()
+
+
+        cpuFuture?.cancel(true)
+
+        try {
+            cpuFuture.get()
+        } catch (_: Exception) {
+            executor.shutdown()
+        }
     }
 }

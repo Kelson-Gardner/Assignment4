@@ -1,7 +1,13 @@
 class ConvertToBase10(
-    val registerX: Char
+    val register: Char
 ) : InstructionStrategy() {
+    private val cpu = CPU.getInstance()
     override fun performAction() {
-        //TODO: implement the convert to base 10 instruction
+        val registerValue = cpu.getRegisterValue(register.toString().toInt())
+        cpu.assignAddressValue(registerValue)
+    }
+
+    override fun incrementProgramCounter() {
+        cpu.incrementProgramCounter()
     }
 }

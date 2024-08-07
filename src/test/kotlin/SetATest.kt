@@ -6,21 +6,23 @@ class SetATest {
 
     @Test
     fun testPerformAction(){
-        val setA = SetA("FFF")
+        val setA = SetA("010")
         setA.execute()
-        assertEquals(cpu.getAddress(), "FFF")
+        assertEquals(cpu.getAddress(), "0A")
     }
     @Test
     fun testIncrementProgramCounter(){
-        val setA = SetA("102")
+        val previousProgramCounter = cpu.programCounter
+        val setA = SetA("010")
         setA.execute()
-        assertEquals(cpu.programCounter, 4)
+        assertEquals(cpu.programCounter - previousProgramCounter, 2)
     }
     @Test
     fun testExecute(){
-        val setA = SetA("1F2")
+        val previousProgramCounter = cpu.programCounter
+        val setA = SetA("255")
         setA.execute()
-        assertEquals(cpu.getAddress(), "1F2")
-        assertEquals(cpu.programCounter, 2)
+        assertEquals(cpu.getAddress(), "FF")
+        assertEquals(cpu.programCounter - previousProgramCounter, 2)
     }
 }

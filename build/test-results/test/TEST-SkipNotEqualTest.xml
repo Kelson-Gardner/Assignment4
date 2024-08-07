@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="SkipNotEqualTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-08-07T03:39:42" hostname="Kelsons-MacBook-Pro-2.local" time="0.005">
+  <properties/>
+  <testcase name="testExecute()" classname="SkipNotEqualTest" time="0.002"/>
+  <testcase name="testSkip()" classname="SkipNotEqualTest" time="0.0"/>
+  <testcase name="testPerformAction()" classname="SkipNotEqualTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

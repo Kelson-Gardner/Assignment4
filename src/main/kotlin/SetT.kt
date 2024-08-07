@@ -1,7 +1,13 @@
 class SetT (
-    val bb: Char
+    private val timerStartValue: String
 ) : InstructionStrategy() {
+    private val cpu = CPU.getInstance()
+
     override fun performAction() {
-        //TODO: implement the set T instruction
+        cpu.timer.setTimer(timerStartValue)
+    }
+
+    override fun incrementProgramCounter() {
+        cpu.incrementProgramCounter()
     }
 }

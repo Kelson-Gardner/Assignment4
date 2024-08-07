@@ -12,16 +12,18 @@ class AddTest {
 
     @Test
     fun testIncrementProgramCounter(){
+        val previousProgramCounter = cpu.programCounter
         val add = Add('F', 'A', '6')
         add.execute()
-        assertEquals(cpu.programCounter, 6)
+        assertEquals(cpu.programCounter - previousProgramCounter, 2)
     }
 
     @Test
     fun testExecute(){
+        val previousProgramCounter = cpu.programCounter
         val add = Add('A', 'C', '2')
         add.execute()
         assertEquals(cpu.getRegisterValue(2), "22".toUByte(16))
-        assertEquals(cpu.programCounter, 2)
+        assertEquals(cpu.programCounter - previousProgramCounter, 2)
     }
 }

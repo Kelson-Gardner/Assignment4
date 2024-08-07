@@ -13,15 +13,18 @@ class SwitchMemoryTest {
 
     @Test
     fun testIncrementProgramCounter(){
+        val previousProgramCounter = cpu.programCounter
         val switchMemory = SwitchMemory()
         switchMemory.execute()
-        assertEquals(cpu.programCounter, 6)
+        assertEquals(cpu.programCounter - previousProgramCounter, 2)
     }
 
     @Test
     fun testExecute(){
+        val previousProgramCounter = cpu.programCounter
         val switchMemory = SwitchMemory()
         switchMemory.execute()
         assertEquals(cpu.getMemoryFlag(), true)
+        assertEquals(cpu.programCounter - previousProgramCounter, 2)
     }
 }

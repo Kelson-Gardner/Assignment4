@@ -1,11 +1,13 @@
 class Subtract(
-    val registerX: Char,
-    val registerY: Char,
-    val differenceRegister: Char
+    private val registerX: Char,
+    private val registerY: Char,
+    private val differenceRegister: Char
 ) : InstructionStrategy() {
     private val cpu = CPU.getInstance()
     override fun performAction(){
-        val difference = registerX.toString().toInt(16) - registerY.toString().toInt(16)
+        val registerXValue = cpu.getRegisterValue(registerX.digitToInt())
+        val registerYValue = cpu.getRegisterValue(registerY.digitToInt())
+        val difference = registerXValue - registerYValue
         cpu.assignRegisterValue(differenceRegister.toString().toInt(), difference.toString())
     }
 
