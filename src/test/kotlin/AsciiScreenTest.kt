@@ -15,6 +15,6 @@ class AsciiScreenTest {
     fun testGetDisplayValue(){
         cpu.asciiDisplay.assignDisplayValue("H", 0, 0)
         assertEquals(cpu.asciiDisplay.getDisplayValue(0, 0), "H")
-        assertEquals(cpu.asciiDisplay.getDisplayValue(7, 7), "[]")
+        assertEquals(cpu.asciiDisplay.getDisplayValue(7, 7), "*")
     }
 }

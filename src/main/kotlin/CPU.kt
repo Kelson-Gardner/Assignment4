@@ -89,7 +89,6 @@ class CPU private constructor(){
             val operands = byte.substring(1)
             val instruction = InstructionFactory().createInstruction(opcode.digitToInt(16), operands)
             instruction.execute()
-            println(address)
     }
 
         cpuFuture = executor.scheduleAtFixedRate(

@@ -7,10 +7,7 @@ class Add(
     override fun performAction(){
         val registerXValue = cpu.getRegisterValue(registerX.digitToInt())
         val registerYValue = cpu.getRegisterValue(registerY.digitToInt())
-        println(registerYValue)
-        println(registerXValue)
         val sum = registerXValue + registerYValue
-        println(sum)
         cpu.assignRegisterValue(sumRegister.toString().toInt(), sum.toString())
     }
 

@@ -4,7 +4,7 @@ class ReadKeyboard(
     private val cpu = CPU.getInstance()
     override fun performAction() {
         println("Enter a number between 0 and F")
-        val input = readln()
+        var input = readln()
         cpu.assignRegisterValue(register.toString().toInt(), input)
     }
 

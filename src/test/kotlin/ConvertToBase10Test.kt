@@ -5,9 +5,10 @@ class ConvertToBase10Test {
     private val cpu = CPU.getInstance()
     @Test
     fun testPerformAction(){
+        cpu.assignRegisterValue(1, "A")
         val convertToBase10 = ConvertToBase10('1')
         convertToBase10.execute()
-        assertEquals(cpu.getAddress(), "00")
+        assertEquals(cpu.getAddress(), "0A")
     }
 
     @Test
@@ -20,10 +21,11 @@ class ConvertToBase10Test {
 
     @Test
     fun testExecute(){
+        cpu.assignRegisterValue(0, "4")
         val previousProgramCounter = cpu.programCounter
-        val convertToBase10 = ConvertToBase10('4')
+        val convertToBase10 = ConvertToBase10('0')
         convertToBase10.execute()
-        assertEquals(cpu.getAddress(), "00")
+        assertEquals(cpu.getAddress(), "04")
         assertEquals(cpu.programCounter - previousProgramCounter, 2)
     }
 }

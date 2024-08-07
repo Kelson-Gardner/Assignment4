@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="SkipEqualTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-08-07T03:39:42" hostname="Kelsons-MacBook-Pro-2.local" time="0.006">
+<testsuite name="SkipEqualTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-08-07T16:01:10" hostname="Kelsons-MacBook-Pro-2.local" time="0.008">
   <properties/>
-  <testcase name="testExecute()" classname="SkipEqualTest" time="0.003"/>
+  <testcase name="testExecute()" classname="SkipEqualTest" time="0.001"/>
   <testcase name="testSkip()" classname="SkipEqualTest" time="0.001"/>
-  <testcase name="testPerformAction()" classname="SkipEqualTest" time="0.0"/>
+  <testcase name="testPerformAction()" classname="SkipEqualTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
